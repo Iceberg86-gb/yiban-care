@@ -4,7 +4,7 @@
 
 ## 交接信息
 
-- 仓库：<https://github.com/Iceberg86-gb/yiban-care>，默认分支 `main`。
+- 仓库：<https://github.com/Iceberg86-gb/youban-care>，默认分支 `main`。
 - 私有仓库：部署者需要仓库读取权限。服务器建议使用只读 Deploy Key；不要把个人 GitHub Token 写进克隆地址、脚本或配置文件。
 - 运行方式：Docker Compose，一个 `app` 实例；宿主机 Nginx 转发到 `127.0.0.1:4317`。
 - 数据：Docker 命名卷 `care-data`，挂载到 `/app/data`。首次运行自动生成演示状态及加密密钥。
@@ -18,8 +18,8 @@
 ```sh
 docker --version
 docker compose version
-git clone git@github.com:Iceberg86-gb/yiban-care.git
-cd yiban-care
+git clone git@github.com:Iceberg86-gb/youban-care.git
+cd youban-care
 cp .env.example .env
 chmod 600 .env
 ```
