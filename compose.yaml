@@ -1,0 +1,31 @@
+name: yiban-care
+services:
+  app:
+    build: .
+    init: true
+    restart: unless-stopped
+    stop_grace_period: 30s
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: "4317"
+      TZ: Asia/Shanghai
+      YIBAN_DATA_FILE: /app/data/state.json
+      APP_ACCESS_CODE: ${APP_ACCESS_CODE:?请先在 .env 中设置非空的家庭访问口令}
+      QIANFAN_API_KEY: ${QIANFAN_API_KEY:-}
+      QIANFAN_MODEL: ${QIANFAN_MODEL:-ernie-4.5-turbo-128k}
+      BAIDU_MAP_BROWSER_AK: ${BAIDU_MAP_BROWSER_AK:-}
+      BAIDU_TTS_API_KEY: ${BAIDU_TTS_API_KEY:-}
+      BAIDU_TTS_SECRET_KEY: ${BAIDU_TTS_SECRET_KEY:-}
+      BAIDU_TTS_SPEAKER: ${BAIDU_TTS_SPEAKER:-4197}
+    ports:
+      - "127.0.0.1:4317:4317"
+    volumes:
+      - care-data:/app/data
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  care-data:
